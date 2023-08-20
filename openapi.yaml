@@ -1,0 +1,137 @@
+openapi: 3.0.3
+info:
+  title: Pets API
+  description: Pets API
+  version: 0.0.0
+servers:
+  - url: '-'
+paths:
+  /pets:
+    post:
+      operationId: petCreate
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                type:
+                  type: string
+                name:
+                  type: string
+              required:
+                - type
+                - name
+              additionalProperties: false
+      parameters: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: number
+                    type:
+                      type: string
+                    name:
+                      type: string
+                  required:
+                    - id
+                    - type
+                    - name
+                  additionalProperties: false
+        default:
+          $ref: '#/components/responses/error'
+    get:
+      operationId: petGetAll
+      parameters: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: number
+                    type:
+                      type: string
+                    name:
+                      type: string
+                  required:
+                    - id
+                    - type
+                    - name
+                  additionalProperties: false
+        default:
+          $ref: '#/components/responses/error'
+  /pets/{pet_id}:
+    get:
+      operationId: petGet
+      parameters:
+        - name: pet_id
+          in: path
+          required: true
+          schema:
+            type: number
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: number
+                  type:
+                    type: string
+                  name:
+                    type: string
+                required:
+                  - id
+                  - type
+                  - name
+                additionalProperties: false
+        default:
+          $ref: '#/components/responses/error'
+components:
+  securitySchemes:
+    Authorization:
+      type: http
+      scheme: bearer
+  responses:
+    error:
+      description: Error response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+              code:
+                type: string
+              issues:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    message:
+                      type: string
+                  required:
+                    - message
+                  additionalProperties: false
+            required:
+              - message
+              - code
+            additionalProperties: false
