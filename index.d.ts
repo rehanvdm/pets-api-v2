@@ -159,7 +159,7 @@ export declare class HttpClient<SecurityDataType = unknown> {
 }
 /**
  * @title Pets API
- * @version 0.0.2
+ * @version 0.0.3
  * @baseUrl -
  *
  * Pets API
