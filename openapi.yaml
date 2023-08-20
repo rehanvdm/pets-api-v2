@@ -2,7 +2,7 @@ openapi: 3.0.3
 info:
   title: Pets API
   description: Pets API
-  version: 0.0.1
+  version: 0.0.2
 servers:
   - url: '-'
 paths:
